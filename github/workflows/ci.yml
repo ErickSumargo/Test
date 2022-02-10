@@ -1,0 +1,15 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: macos-latest
+    needs: initialize
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Build application
+        run: ./gradlew assembleDebug --stacktrace

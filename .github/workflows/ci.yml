@@ -7,7 +7,6 @@ on:
 jobs:
   build:
     runs-on: macos-latest
-    needs: initialize
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2

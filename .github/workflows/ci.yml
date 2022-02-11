@@ -8,6 +8,11 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Create artifact
@@ -17,11 +22,3 @@ jobs:
         with:
           name: my-artifact2
           path: app/hello2.txt
-      - name: Download link artifact
-        uses: actions/download-artifact@v2
-        id: download2
-        with:
-          name: my-artifact2
-          path: hello2.txt
-      - name: Echo download path
-        run: echo ${{steps.download2.outputs.download-path}}

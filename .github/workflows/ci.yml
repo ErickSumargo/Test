@@ -11,17 +11,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Create artifact
-        run: echo world > app/hello.txt
+        run: echo world > app/hello2.txt
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
-          path: app/hello.txt
+          name: my-artifact2
+          path: app/hello2.txt
       - name: Download link artifact
         uses: actions/download-artifact@v2
-        id: download
+        id: download2
         with:
-          name: my-artifact
-          path: app/hello.txt
+          name: my-artifact2
+          path: app/hello2.txt
       - name: Echo download path
-        run: echo ${{steps.download.outputs.download-path}}
+        run: echo ${{steps.download2.outputs.download-path}}

@@ -10,10 +10,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Build application
-        run: ./gradlew assembleDebug
-      - name: Install application
-        uses: reactivecircus/android-emulator-runner@v2
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+      - run: apkanalyzer
+      - name: Create artifact
+        run: echo world > app/hello.txt
+      - name: Upload artifact
         with:
-          api-level: 29
-          script: adb install app/build/outputs/apk/debug/app-debug.apk && adb shell am start -S -W com.bael.test/.MainActivity -c android.intent.category.LAUNCHER -a android.intent.action.MAIN
+          name: my-artifact
+          path: app/hello.txt
+      - name: Download link artifact
+        uses: actions/download-artifact@v2
+        id: download
+        with:
+          name: my-artifact
+          path: app/hello.txt
+      - name: Echo download path
+        run: echo ${{steps.download.outputs.download-path}}

@@ -11,4 +11,4 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Build application
-        run: ./gradlew assembleDebug --stacktrace
+        run: adb devices

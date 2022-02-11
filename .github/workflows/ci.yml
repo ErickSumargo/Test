@@ -10,5 +10,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Upload artifact
+        run: echo world > hello.txt
       - name: Build application
-        run: adb devices
+        run: ./gradlew assembleDebug
+      - name: Install application
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: adb install app/build/outputs/apk/debug/app-debug.apk

@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Apkanalyzer
-        run: apkanalyzer
       - name: Build application
         run: ./gradlew assembleDebug
       - name: Install application

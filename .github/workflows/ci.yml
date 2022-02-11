@@ -12,7 +12,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
-      - run: apkanalyzer
+      - name: Apkanalyzer
+        run: apkanalyzer
       - name: Create artifact
         run: echo world > app/hello.txt
       - name: Upload artifact

@@ -22,6 +22,6 @@ jobs:
         id: download2
         with:
           name: my-artifact2
-          path: app/hello2.txt
+          path: hello2.txt
       - name: Echo download path
         run: echo ${{steps.download2.outputs.download-path}}

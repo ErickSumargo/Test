@@ -11,14 +11,4 @@ jobs:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: |
-          echo "$GITHUB_CONTEXT"
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Create artifact
-        run: echo world > app/hello2.txt
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact2
-          path: app/hello2.txt
+        run: echo https://ericksumargo.github.io/sherlock_page?r=${{ github.run_id }}

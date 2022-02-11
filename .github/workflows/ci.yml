@@ -10,19 +10,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Create artifact
-        run: echo world > hello.txt
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact
-          path: hello.txt
+      - name: Apkanalyzer
+        run: apkanalyzer
       - name: Build application
         run: ./gradlew assembleDebug
       - name: Install application
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: adb install app/build/outputs/apk/debug/app-debug.apk
-      - name: Measure startup time
-        run: adb shell am start -S -W com.bael.test/.MainActivity -c android.intent.category.LAUNCHER -a android.intent.action.MAIN
+          script: adb install app/build/outputs/apk/debug/app-debug.apk && adb shell am start -S -W com.bael.test/.MainActivity -c android.intent.category.LAUNCHER -a android.intent.action.MAIN

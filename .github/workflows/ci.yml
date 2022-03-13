@@ -20,3 +20,5 @@ jobs:
         run: echo ${{ github.ref_name }}
       - name: Dump GitHub base ref
         run: echo ${{ github.base_ref }}
+      - name: Build application
+        run: ./gradlew assembleDebug --stacktrace

@@ -12,3 +12,11 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo https://ericksumargo.github.io/sherlock_page?r=${{ github.run_id }}
+      - name: Dump GitHub head ref
+        run: echo ${{ github.head_ref }}
+      - name: Dump GitHub ref
+        run: echo ${{ github.ref }}
+      - name: Dump GitHub ref name
+        run: echo ${{ github.ref_name }}
+      - name: Dump GitHub base ref
+        run: echo ${{ github.base_ref }}

@@ -4,11 +4,28 @@ on:
   push:
     branches:
       - main
+
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: macos-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo https://ericksumargo.github.io/sherlock_page?r=${{ github.run_id }}
+      - name: Dump GitHub head ref
+        run: echo ${{ github.head_ref }}
+      - name: Dump GitHub ref
+        run: echo ${{ github.ref }}
+      - name: Dump GitHub ref name
+        run: echo ${{ github.ref_name }}
+      - name: Dump GitHub base ref
+        run: echo ${{ github.base_ref }}
+      - name: Build application
+        run: ./gradlew assembleDebug --stacktrace

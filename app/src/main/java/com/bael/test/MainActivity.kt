@@ -12,6 +12,5 @@ class MainActivity : AppCompatActivity() {
 
         val tv = findViewById<TextView>(R.id.tv)
         val wkwk = Wkwk()
-        tv.text = wkwk.toString()
     }
 }
